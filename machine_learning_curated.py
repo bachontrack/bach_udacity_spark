@@ -36,14 +36,16 @@ steptrainertrusted_node1698432105879 = glueContext.create_dynamic_frame.from_cat
 )
 
 # Script generated for node SQL Query
-SqlQuery573 = """
-select * from acc
+SqlQuery486 = """
+select distinct acc.user, acc.timestamp, acc.x, acc.y, acc.z
+, sensorreadingtime, serialnumber, distancefromobject 
+from acc
 inner join step
 on step.sensorreadingtime = acc.timestamp
 """
 SQLQuery_node1698432118544 = sparkSqlQuery(
     glueContext,
-    query=SqlQuery573,
+    query=SqlQuery486,
     mapping={
         "acc": accelerometertrusted_node1698430912558,
         "step": steptrainertrusted_node1698432105879,
