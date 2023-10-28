@@ -33,16 +33,17 @@ Filter_node1698416049267 = Filter.apply(
 )
 
 # Script generated for node Amazon S3
-AmazonS3_node1698416286996 = glueContext.write_dynamic_frame.from_options(
-    frame=Filter_node1698416049267,
+AmazonS3_node1698416286996 = glueContext.getSink(
+    path="s3://practicebucket193prac/customer/trusted/",
     connection_type="s3",
-    format="json",
-    connection_options={
-        "path": "s3://practicebucket193prac/customer/trusted/",
-        "compression": "snappy",
-        "partitionKeys": [],
-    },
+    updateBehavior="UPDATE_IN_DATABASE",
+    partitionKeys=[],
+    enableUpdateCatalog=True,
     transformation_ctx="AmazonS3_node1698416286996",
 )
-
+AmazonS3_node1698416286996.setCatalogInfo(
+    catalogDatabase="bachhoang", catalogTableName="customer_trusted"
+)
+AmazonS3_node1698416286996.setFormat("json")
+AmazonS3_node1698416286996.writeFrame(Filter_node1698416049267)
 job.commit()

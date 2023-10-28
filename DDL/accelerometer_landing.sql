@@ -1,4 +1,4 @@
-CREATE EXTERNAL TABLE IF NOT EXISTS `stedi-project`.`accelerometer_landing` (
+CREATE EXTERNAL TABLE IF NOT EXISTS `bachhoang`.`accelerometer_landing` (
   `user` string,
   `timeStamp` bigint,
   `x` float,
